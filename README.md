@@ -1,0 +1,2 @@
+# statos-www
+Status generator
