@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+import '../public/assets/scss/main.scss'
+
 const App = () => (
   <div><h1>Hello world</h1></div>
 )
