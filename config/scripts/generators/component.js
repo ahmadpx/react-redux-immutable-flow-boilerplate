@@ -71,7 +71,7 @@ function getComponentDir ([flag, viewName]) {
     if (!viewName) {
       throw new Error('view name is required')
     }
-    const viewPath = path.join(srcPath, 'views', viewName)
+    const viewPath = path.join(srcPath, 'views', viewName, 'components')
     const componentExist = fs.existsSync(viewPath)
     if (!componentExist) {
       fs.mkdirSync(viewPath)
