@@ -15,7 +15,7 @@ const extractSass = new ExtractTextPlugin({
   disable: process.env.NODE_ENV === 'development'
 })
 
-module.exports = {
+const webpackConfig = {
   entry: [ // string | object | array
     './src/index',
   ],
@@ -49,10 +49,13 @@ module.exports = {
       
       {
         test: /\.scss$/,
-        use: extractSass.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'resolve-url-loader', 'sass-loader']
-        })
+        use: [{ // TODO dev only ( use extract text plugin for production )
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "sass-loader" // compiles Sass to CSS
+        }]
       }
       
     ]
@@ -74,7 +77,7 @@ module.exports = {
   }
   ,
   
-  performance: {
+  performance: { //TODO dev only
     hints: 'warning', // enum
     maxAssetSize: 200000, // int (in bytes),
     maxEntrypointSize: 400000, // int (in bytes)
@@ -85,7 +88,7 @@ module.exports = {
   }
   ,
   
-  devtool: 'source-map', // enum
+  devtool: 'source-map', // enum TODO dev only
   // enhance debugging by adding meta info for the browser devtools
   // source-map most detailed at the expense of build speed.
   
@@ -101,7 +104,7 @@ module.exports = {
   stats: 'errors-only',
   // lets you precisely control what bundle information gets displayed
   
-  devServer: {
+  devServer: { // TODO dev only
     // proxy: { // proxy URLs to backend development server
     //   '/api': 'http://localhost:3000'
     // },
@@ -115,8 +118,10 @@ module.exports = {
   }
   ,
   plugins: [
-    extractSass,
+    //extractSass, TODO production only
     HtmlWebpackPluginConfig,
     new webpack.HotModuleReplacementPlugin()
   ]
 }
+
+module.exports = webpackConfig
