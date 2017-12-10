@@ -1,9 +1,58 @@
-body {
-  color: yellow;
+/*
+@stats: to keep track of files status
+  @refactor         ->  needs refactor
+      @fix          ->  needs fixing
+      @BEM          ->  BEM is not applied
+      @nesting      ->  nesting is not applied
+  @doc              ->  needs documentation
+  @done             ->  Done! ( linting is not applied yet)
+*/
 
-  div {
-    background: red;
-  }
-}
+/* Helpers */
+/* .................................................
+files are not compiled to css [ just used ] ex, config, mixins, functions  */
+@import "config";
+@import "helpers/functions.generators";
+@import "helpers/mixins.responsive";
 
-@import 'public/assets/scss/ccomponents/ComponentName.scss';
+/* Vendors */
+/* .................................................
+Vendor libraries  */
+
+/* Base */
+/* .................................................
+Base styling ex, reset, fonts definitions, ... etc  */
+@import "base/reset";
+@import "base/global";
+@import "base/typography";
+
+/* components */
+/* .................................................
+ui components without logic ( components with logic will be in each ( js view library component folder ) */
+
+/* Utilities */
+/* .................................................
+rules that wins every time [ with alot of `!important` ]*/
+@import "utilities/margins";
+@import "utilities/floats";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
