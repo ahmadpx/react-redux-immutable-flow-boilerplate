@@ -1,0 +1,26 @@
+/* Responsive Mixins */
+/* ................................................. */
+
+/* Desktop first media query
+----------------------- */
+@mixin below($point) {
+  @if map-has-key($break_points, $point) {
+    @media (max-width: #{map-get($break_points, $point)}) {
+      @content;
+    }
+  } @else {
+    @warn "Sorry, `#{$point}` is not found in `$break_points` map";
+  }
+}
+
+/* Mobile first media query
+----------------------- */
+@mixin above($point) {
+  @if map-has-key($break_points, $point) {
+    @media (min-width: #{map-get($break_points, $point)}) {
+      @content;
+    }
+  } @else {
+    @warn "Sorry, `#{$point}` is not found in `$break_points` map";
+  }
+}
