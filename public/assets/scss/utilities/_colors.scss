@@ -1,0 +1,17 @@
+/* color helper classes */
+/* ................................................. */
+.disabled {
+  color: darkgrey;
+}
+
+@each $key, $val in $colors {
+  .helper__color--#{$key} {
+    color: #{$val} !important;
+  }
+}
+
+@each $key, $val in $colors {
+  .helper__bgColor--#{$key} {
+    background-color: #{$val} !important;
+  }
+}

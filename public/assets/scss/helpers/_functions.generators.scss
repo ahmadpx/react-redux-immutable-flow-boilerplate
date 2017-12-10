@@ -1,0 +1,110 @@
+/* Generators functions */
+/* ................................................. */
+
+/* Generate color
+-----------------------
+it gets the values from a map in config.scss
+ex. color: color($primary);
+output:
+    color: #053a6e;
+*/
+@function color($color) {
+  @if map-has-key($colors, $color) {
+    @return map-get($colors, $color);
+  } @else {
+    @warn "Sorry, `#{$color}` is not found in `$colors` map";
+  }
+}
+
+/* Generate z-index
+-----------------------
+it gets the values from a map in config.scss
+ex. z-index: z(default);
+output:
+    z-index: 1;
+*/
+@function z($layer) {
+  @if (map-has-key($z_layers, $layer)) {
+    @return map-get($z_layers, $layer);
+  } @else {
+    @warn "`#{$layer}` is not defined in `$z_layers` map";
+  }
+}
+
+/* Helper functions */
+/* ................................................. */
+
+/* get a map value with warning
+-----------------------
+it gets the values from a map in config.scss
+ex. z-index: get-value($z_layers, default);
+output:
+    z-index: 1;
+*/
+@function get-value($map, $key) {
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  } @else {
+    @warn "Sorry, `#{$key}` is not found in `#{$map}` map";
+  }
+}
+
+/* first of a list
+----------------------- */
+@function first($list) {
+  @return nth($list, 1);
+}
+
+/* last of a list
+----------------------- */
+@function last($list) {
+  @return nth($list, length($list));
+}
+
+/* remove index from a list
+----------------------- */
+@function remove-nth($list, $index) {
+  $result: null;
+
+  @if type-of($index) != number {
+    @warn "$index: #{quote($index)} is not a number for `remove-nth`.";
+  } @else if $index == 0 {
+    @warn "List index 0 must be a non-zero integer for `remove-nth`.";
+  } @else if abs($index) > length($list) {
+    @warn "List index is #{$index} but list is only #{length($list)} item long for `remove-nth`.";
+  } @else {
+    $result: ();
+    $index: if($index < 0, length($list) + $index + 1, $index);
+
+    @for $i from 1 through length($list) {
+      @if $i != $index {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+/* Replace a value in list
+----------------------- */
+@function replace($list, $old-value, $new-value, $recursive: false) {
+  $result: ();
+
+  @for $i from 1 through length($list) {
+    @if type-of(nth($list, $i)) == list and $recursive {
+      $result: append($result, replace(nth($list, $i), $old-value, $new-value, $recursive));
+    } @else {
+      @if nth($list, $i) == $old-value {
+        $result: append($result, $new-value);
+      } @else {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+
+

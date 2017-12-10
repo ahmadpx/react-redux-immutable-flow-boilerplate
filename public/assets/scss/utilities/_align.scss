@@ -1,0 +1,20 @@
+/* align helper classes */
+/* ................................................. */
+$align_map: (
+  left: left,
+  start: left,
+  right: right,
+  end: right,
+  center: center
+);
+
+@each $key, $val in $align_map {
+  .helper__align--#{$key} {
+    text-align: #{$val} !important;
+  }
+}
+
+// align center for all children
+.helper__alignChild--center * {
+  margin: 0 auto !important;
+}

@@ -1,0 +1,15 @@
+/* floats helper classes */
+/* ................................................. */
+$float_map: (
+  left: left,
+  start: left,
+  right: right,
+  end: right,
+  none: none
+);
+
+@each $key, $val in $float_map {
+  .helper__float--#{$key} {
+    float: #{$val} !important;
+  }
+}

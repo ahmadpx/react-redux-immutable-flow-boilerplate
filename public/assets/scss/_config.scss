@@ -1,0 +1,80 @@
+/*
+Configuration values for the project
+................................................
+here we define all variables, maps, lists which
+are used in the hall project
+*/
+$headerHeight: 64px;
+$sidebarWidth: 300px;
+
+/*
+Colors
+============================================= */
+$colors: (
+  // main colors
+  primary: #292F6D,
+  primary-light: lighten(#292F6D, 10%),
+  primary-dark: darken(#292F6D, 4%),
+  secondary: #3AA9DB,
+  // gray
+  gray50: #fafafa,
+  gray100: #f5f5f5,
+  gray200: #eee,
+  gray300: #e0e0e0,
+  gray400: #bdbdbd,
+  gray500: #9e9e9e,
+  gray600: #757575,
+  gray700: #616161,
+  gray800: #424242,
+  gray900: #212121,
+  // status
+  success: #5cb85c,
+  info: #5bc0de,
+  danger: #d9534f,
+  dangerText: #a94442,
+  warning: #f0ad4e,
+  disabled: #bdbdbd,
+  // social colors
+  facebook: #3b5998,
+  twitter: #00aced,
+  google-plus: #dd4b39,
+  linkedin: #007bb6,
+  youtube: #bb0000,
+  pinterest: #cb2027,
+  instagram: #3f729b,
+  yahoo: #720e9e,
+  deviant-art: #4e6252,
+  tumblr: #32506d,
+  vimo: #aad450,
+  dribble: #ea4c89,
+  flickr: #ff0084,
+  plaxo: #329bfb
+);
+
+/*
+Media Queries breakpoints
+============================================= */
+$break_points: (
+  xs: 479px,
+  sm: 767px,
+  md: 991px,
+  lg: 1199px
+);
+
+/*
+Z-index layers
+============================================= */
+$z_layers: (
+  roof: 1000, // highest order
+  // layers goes here
+  // ...
+  default: 1,
+  floor: -1 // lowest order
+);
+
+/*
+Typography
+============================================= */
+$fonts: (
+  main: #{"'Droid Arabic Kufi', serif"}
+);

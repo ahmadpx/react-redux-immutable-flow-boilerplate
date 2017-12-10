@@ -1,0 +1,14 @@
+/* positioning helper classes */
+/* ................................................. */
+$position_map: (
+  relative: relative,
+  absolute: absolute,
+  fixed: fixed,
+  static: static
+);
+
+@each $key, $val in $position_map {
+  .helper__position--#{$key} {
+    position: #{$val} !important;
+  }
+}
