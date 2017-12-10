@@ -1,0 +1,45 @@
+/* typography helper classes */
+/* ................................................. */
+// font-size
+@for $i from 0 through 50 {
+  .helper__fontSize--#{$i} {
+    font-size: #{$i}px !important;
+  }
+}
+
+// font-weight
+.helper__fontWeight-- {
+  &normal {
+    font-weight: normal !important;
+  }
+
+  &bold {
+    font-weight: bold !important;
+  }
+  &light {
+    font-weight: lighter !important;
+  }
+}
+
+// color (font-color)
+.helper__fontColor-- {
+  &primary {
+    color: color(primary) !important;
+  }
+
+  &black {
+    color: #000 !important;
+  }
+
+  &white {
+    color: #fff !important;
+  }
+  &gray {
+    color: color(gray600) !important;
+  }
+}
+
+.textEllipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

@@ -1,0 +1,10 @@
+/* forms helper classes */
+/* ................................................. */
+.helper__inputFile--hidden {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  opacity: 0 !important;
+  top: 0;
+  right: 0;
+}

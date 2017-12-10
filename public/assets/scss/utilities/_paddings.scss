@@ -1,0 +1,12 @@
+/* paddings helper classes */
+/* ................................................. */
+@for $i from 0 through 20 {
+  // padding-top
+  .pt#{$i * 5} {
+    padding-top: #{$i * 5}px !important;
+  }
+  // padding-bottom
+  .pb#{$i * 5} {
+    padding-bottom: #{$i * 5}px !important;
+  }
+}

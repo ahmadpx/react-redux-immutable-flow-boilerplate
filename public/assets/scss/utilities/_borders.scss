@@ -1,0 +1,11 @@
+/* borders helper classes */
+/* ................................................. */
+.helper__border--circle {
+  border-radius: 50%;
+}
+
+@each $key, $val in $colors {
+  .helper__borderColor--#{$key} {
+    border-color: #{$val} !important;
+  }
+}

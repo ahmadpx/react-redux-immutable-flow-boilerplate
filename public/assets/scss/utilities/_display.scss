@@ -1,0 +1,18 @@
+/* Display Helper Classes */
+/* ................................................. */
+.diplaynone {
+  display: none !important;
+}
+
+$display_map: (
+  block: block,
+  inline: inline,
+  inlineBlock: inline-block,
+  none: none
+);
+
+@each $key, $val in $display_map {
+  .helper__display--#{$key} {
+    display: #{$val} !important;
+  }
+}

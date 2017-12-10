@@ -1,0 +1,13 @@
+/* cursors helper classes */
+/* ................................................. */
+$cursor_map: (
+  pointer: pointer,
+  cursor: default,
+  default: default
+);
+
+@each $key, $val in $cursor_map {
+  .helper__cursor--#{$key} {
+    cursor: #{$val} !important;
+  }
+}
