@@ -2,29 +2,26 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
+const {srcPath, publicPath, buildPath} = require('../constants');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './public/index.html',
+  template: path.resolve(publicPath, 'index.html'),
   filename: 'index.html',
   inject: 'body',
   hot: true
 })
 
-const extractSass = new ExtractTextPlugin({
-  filename: 'css/[name].[contenthash].css',
-  disable: process.env.NODE_ENV === 'development'
-})
-
 const webpackConfig = {
   entry: [ // string | object | array
-    './src/index',
+    path.resolve(srcPath, 'index.jsx')
   ],
   // Here the application starts executing
   // and webpack starts bundling
   
   output: {
     // options related to how webpack emits results
-    path: path.resolve(__dirname, 'build'), // string
+    path: buildPath,
     // the target directory for all output files
     // must be an absolute path (use the Node.js path module)
     
@@ -49,18 +46,36 @@ const webpackConfig = {
       
       {
         test: /\.scss$/,
-        use: [{ // TODO dev only ( use extract text plugin for production )
-          loader: "style-loader" // creates style nodes from JS strings
-        }, {
-          loader: "css-loader" // translates CSS into CommonJS
-        }, {
-          loader: "sass-loader" // compiles Sass to CSS
-        }]
+        use: [
+          {
+            loader: "style-loader" // creates style nodes from JS strings
+          }, {
+            loader: "css-loader" // translates CSS into CommonJS
+          }, {
+            loader: "postcss-loader", // Use postcss plugins
+            options: {
+              // Necessary for external CSS imports to work
+              ident: 'postcss',
+              plugins: [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                  flexbox: 'no-2009',
+                }),
+              ]
+            }
+          }, {
+            loader: "sass-loader" // compiles Sass to CSS
+          }
+        ]
       }
-      
     ]
   },
-  
   
   resolve: {
     // options for resolving module requests
@@ -77,7 +92,7 @@ const webpackConfig = {
   }
   ,
   
-  performance: { //TODO dev only
+  performance: {
     hints: 'warning', // enum
     maxAssetSize: 200000, // int (in bytes),
     maxEntrypointSize: 400000, // int (in bytes)
@@ -88,7 +103,7 @@ const webpackConfig = {
   }
   ,
   
-  devtool: 'source-map', // enum TODO dev only
+  devtool: 'source-map', // enum
   // enhance debugging by adding meta info for the browser devtools
   // source-map most detailed at the expense of build speed.
   
@@ -104,7 +119,7 @@ const webpackConfig = {
   stats: 'errors-only',
   // lets you precisely control what bundle information gets displayed
   
-  devServer: { // TODO dev only
+  devServer: {
     // proxy: { // proxy URLs to backend development server
     //   '/api': 'http://localhost:3000'
     // },
@@ -115,10 +130,9 @@ const webpackConfig = {
     https: false, // true for self-signed, object for cert authority
     noInfo: true // only errors & warns on hot reload
     // ...
-  }
-  ,
+  },
+  
   plugins: [
-    //extractSass, TODO production only
     HtmlWebpackPluginConfig,
     new webpack.HotModuleReplacementPlugin()
   ]
