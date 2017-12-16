@@ -1,1 +1,3 @@
-{{componentName}}
+export default {
+
+};
