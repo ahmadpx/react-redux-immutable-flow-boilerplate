@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "react"
+  ],
+  "extends": ["airbnb"],
+  "globals": {
+    "window": true,
+    "document": true,
+  },
+  "rules": {
+    "jsx-a11y/href-no-hash": "off"
+  }
+}
