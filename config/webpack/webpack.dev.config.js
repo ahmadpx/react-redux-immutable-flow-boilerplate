@@ -1,9 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
-const {srcPath, publicPath, buildPath} = require('../constants');
+const {srcPath, publicPath, buildPath} = require('../constants')
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.resolve(publicPath, 'index.html'),
@@ -34,6 +33,13 @@ const webpackConfig = {
     
     rules: [
       // rules for modules (configure loaders, parser options, etc.)
+  
+      {
+        test: /\.jsx?$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      },
       
       {
         test: /\.jsx?$/,
@@ -92,16 +98,16 @@ const webpackConfig = {
   }
   ,
   
-  performance: {
-    hints: 'warning', // enum
-    maxAssetSize: 200000, // int (in bytes),
-    maxEntrypointSize: 400000, // int (in bytes)
-    assetFilter: function (assetFilename) {
-      // Function predicate that provides asset filenames
-      return assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
-    }
-  }
-  ,
+  // performance: {
+  //   hints: 'warning', // enum
+  //   maxAssetSize: 200000, // int (in bytes),
+  //   maxEntrypointSize: 400000, // int (in bytes)
+  //   assetFilter: function (assetFilename) {
+  //     // Function predicate that provides asset filenames
+  //     return assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
+  //   }
+  // }
+  // ,
   
   devtool: 'source-map', // enum
   // enhance debugging by adding meta info for the browser devtools
