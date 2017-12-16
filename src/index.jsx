@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import '../public/assets/scss/main.scss'
 
 const App = () => (
-  <div><h1>Hello world</h1></div>
+  <div>Hello world</div>
 )
 
 ReactDOM.render(<App/>, document.getElementById('app'))
