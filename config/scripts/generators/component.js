@@ -43,7 +43,7 @@ const outputPath = getComponentDir(argsOptions)
 createComponentDir(outputPath, componentDirName)
 componentFiles.forEach(file => {
   const data = getCompiledTemplate(file.templateName)
-  fs.writeFileSync(path.join(outputPath, componentDirName, file.outputFilename), data)
+  fs.writeFileSync(path.join(outputPath, componentName, file.outputFilename), data)
 })
 
 /**
@@ -85,8 +85,9 @@ function getComponentDir ([flag, viewName]) {
  * @param templateName string
  */
 function getCompiledTemplate (templateName) {
+  const componentName = componentDirName;
   const source = getTemplate('component', templateName)
   const template = Handlebars.compile(source)
-  const context = {componentName}
+  const context = {componentName};
   return template(context)
 }

@@ -1,4 +1,18 @@
-import react from 'react-redux';
+import react, { Component } from 'react-redux';
 import proptypes from 'prop-types';
 
-{{componentName}}
+class {{componentName}} extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  render() {
+  
+  }
+}
+
+{{componentName}}.proptypes = {
+
+};
+
+export default {{componentName}};
